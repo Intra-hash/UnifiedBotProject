@@ -1,0 +1,61 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: conradomedeiros
+service: aws-serverless-discord-bot-service
+
+custom:
+  tableName: "users-table-${sls:stage}"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: sa-east-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [UsersTable, Arn]
+  environment:
+    SECRET_KEY: ${env:SECRET_KEY}
+    ALLOWED_ROLEID: ${env:ALLOWED_ROLEID}
+    AUTH_ROLE_ID: ${env:AUTH_ROLE_ID}
+    AUTH_CHANNEL_ID: ${env:AUTH_CHANNEL_ID}
+    BOT_AUTHOR_ID: ${env:BOT_AUTHOR_ID}
+    USERS_TABLE: ${self:custom.tableName}
+
+
+functions:
+  discordBot:
+    handler: dist/handlers/botHandler.handler
+    events:
+      - http:
+          path: webhook
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: UserId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: UserId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.tableName}
+
+plugins:
+  - serverless-offline
+
+package:
+  individually: true

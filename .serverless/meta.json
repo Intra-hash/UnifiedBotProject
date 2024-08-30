@@ -1,0 +1,490 @@
+{
+  "C:\\repos\\Soberana\\UnifiedBotProject": {
+    "versionSfCore": null,
+    "versionFramework": "4.2.4",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "sls": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "conradomedeiros",
+            "service": "aws-serverless-discord-bot-service",
+            "custom": {
+              "tableName": "users-table-dev"
+            },
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "region": "sa-east-1",
+              "iam": {
+                "role": {
+                  "statements": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:DeleteItem"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::GetAtt": [
+                            "UsersTable",
+                            "Arn"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "environment": {
+                "SECRET_KEY": "<REDACTED>",
+                "ALLOWED_ROLEID": "1266183980772753460",
+                "AUTH_ROLE_ID": "1266434921778384918",
+                "AUTH_CHANNEL_ID": "1266436393224110142",
+                "BOT_AUTHOR_ID": "1266185625632116877",
+                "USERS_TABLE": "users-table-dev"
+              },
+              "stage": "dev",
+              "versionFunctions": true
+            },
+            "functions": {
+              "discordBot": {
+                "handler": "dist/handlers/botHandler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "webhook",
+                      "method": "post",
+                      "cors": true
+                    }
+                  }
+                ],
+                "name": "aws-serverless-discord-bot-service-dev-discordBot"
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "UserId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "UserId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST",
+                    "TableName": "users-table-dev"
+                  }
+                }
+              }
+            },
+            "plugins": [
+              "serverless-offline"
+            ],
+            "package": {
+              "individually": true,
+              "artifactsS3KeyDirname": "serverless/aws-serverless-discord-bot-service/dev/code-artifacts"
+            }
+          },
+          "configFileDirPath": "C:\\repos\\Soberana\\UnifiedBotProject",
+          "config": {
+            "type": "sls"
+          },
+          "options": {
+            "function": "discordBot"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      },
+      "env": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "conradomedeiros",
+            "service": "aws-serverless-discord-bot-service",
+            "custom": {
+              "tableName": "users-table-dev"
+            },
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "region": "sa-east-1",
+              "iam": {
+                "role": {
+                  "statements": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:DeleteItem"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::GetAtt": [
+                            "UsersTable",
+                            "Arn"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "environment": {
+                "SECRET_KEY": "<REDACTED>",
+                "ALLOWED_ROLEID": "1266183980772753460",
+                "AUTH_ROLE_ID": "1266434921778384918",
+                "AUTH_CHANNEL_ID": "1266436393224110142",
+                "BOT_AUTHOR_ID": "1266185625632116877",
+                "USERS_TABLE": "users-table-dev"
+              },
+              "stage": "dev",
+              "versionFunctions": true
+            },
+            "functions": {
+              "discordBot": {
+                "handler": "dist/handlers/botHandler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "webhook",
+                      "method": "post",
+                      "cors": true
+                    }
+                  }
+                ],
+                "name": "aws-serverless-discord-bot-service-dev-discordBot"
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "UserId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "UserId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST",
+                    "TableName": "users-table-dev"
+                  }
+                }
+              }
+            },
+            "plugins": [
+              "serverless-offline"
+            ],
+            "package": {
+              "individually": true,
+              "artifactsS3KeyDirname": "serverless/aws-serverless-discord-bot-service/dev/code-artifacts"
+            }
+          },
+          "configFileDirPath": "C:\\repos\\Soberana\\UnifiedBotProject",
+          "config": {
+            "type": "env"
+          },
+          "options": {
+            "function": "discordBot"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      },
+      "self": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "conradomedeiros",
+            "service": "aws-serverless-discord-bot-service",
+            "custom": {
+              "tableName": "users-table-dev"
+            },
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "region": "sa-east-1",
+              "iam": {
+                "role": {
+                  "statements": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "dynamodb:Query",
+                        "dynamodb:Scan",
+                        "dynamodb:GetItem",
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:DeleteItem"
+                      ],
+                      "Resource": [
+                        {
+                          "Fn::GetAtt": [
+                            "UsersTable",
+                            "Arn"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              "environment": {
+                "SECRET_KEY": "<REDACTED>",
+                "ALLOWED_ROLEID": "1266183980772753460",
+                "AUTH_ROLE_ID": "1266434921778384918",
+                "AUTH_CHANNEL_ID": "1266436393224110142",
+                "BOT_AUTHOR_ID": "1266185625632116877",
+                "USERS_TABLE": "users-table-dev"
+              },
+              "stage": "dev",
+              "versionFunctions": true
+            },
+            "functions": {
+              "discordBot": {
+                "handler": "dist/handlers/botHandler.handler",
+                "events": [
+                  {
+                    "http": {
+                      "path": "webhook",
+                      "method": "post",
+                      "cors": true
+                    }
+                  }
+                ],
+                "name": "aws-serverless-discord-bot-service-dev-discordBot"
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "UserId",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "UserId",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST",
+                    "TableName": "users-table-dev"
+                  }
+                }
+              }
+            },
+            "plugins": [
+              "serverless-offline"
+            ],
+            "package": {
+              "individually": true,
+              "artifactsS3KeyDirname": "serverless/aws-serverless-discord-bot-service/dev/code-artifacts"
+            }
+          },
+          "configFileDirPath": "C:\\repos\\Soberana\\UnifiedBotProject",
+          "config": {
+            "type": "self"
+          },
+          "options": {
+            "function": "discordBot"
+          },
+          "stage": "dev",
+          "dashboard": null,
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "C:\\repos\\Soberana\\UnifiedBotProject",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "conradomedeiros",
+      "service": "aws-serverless-discord-bot-service",
+      "custom": {
+        "tableName": "users-table-dev"
+      },
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "region": "sa-east-1",
+        "iam": {
+          "role": {
+            "statements": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Query",
+                  "dynamodb:Scan",
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": [
+                  {
+                    "Fn::GetAtt": [
+                      "UsersTable",
+                      "Arn"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "environment": {
+          "SECRET_KEY": "<REDACTED>",
+          "ALLOWED_ROLEID": "1266183980772753460",
+          "AUTH_ROLE_ID": "1266434921778384918",
+          "AUTH_CHANNEL_ID": "1266436393224110142",
+          "BOT_AUTHOR_ID": "1266185625632116877",
+          "USERS_TABLE": "users-table-dev"
+        },
+        "stage": "dev",
+        "versionFunctions": true
+      },
+      "functions": {
+        "discordBot": {
+          "handler": "dist/handlers/botHandler.handler",
+          "events": [
+            {
+              "http": {
+                "path": "webhook",
+                "method": "post",
+                "cors": true
+              }
+            }
+          ],
+          "name": "aws-serverless-discord-bot-service-dev-discordBot"
+        }
+      },
+      "resources": {
+        "Resources": {
+          "UsersTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "UserId",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "UserId",
+                  "KeyType": "HASH"
+                }
+              ],
+              "BillingMode": "PAY_PER_REQUEST",
+              "TableName": "users-table-dev"
+            }
+          }
+        }
+      },
+      "plugins": [
+        "serverless-offline"
+      ],
+      "package": {
+        "individually": true,
+        "artifactsS3KeyDirname": "serverless/aws-serverless-discord-bot-service/dev/code-artifacts"
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: conradomedeiros\nservice: aws-serverless-discord-bot-service\r\n\r\ncustom:\r\n  tableName: \"users-table-${sls:stage}\"\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  region: sa-east-1\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: Allow\r\n          Action:\r\n            - dynamodb:Query\r\n            - dynamodb:Scan\r\n            - dynamodb:GetItem\r\n            - dynamodb:PutItem\r\n            - dynamodb:UpdateItem\r\n            - dynamodb:DeleteItem\r\n          Resource:\r\n            - Fn::GetAtt: [UsersTable, Arn]\r\n  environment:\r\n    SECRET_KEY: ${env:SECRET_KEY}\r\n    ALLOWED_ROLEID: ${env:ALLOWED_ROLEID}\r\n    AUTH_ROLE_ID: ${env:AUTH_ROLE_ID}\r\n    AUTH_CHANNEL_ID: ${env:AUTH_CHANNEL_ID}\r\n    BOT_AUTHOR_ID: ${env:BOT_AUTHOR_ID}\r\n    USERS_TABLE: ${self:custom.tableName}\r\n\r\n\r\nfunctions:\r\n  discordBot:\r\n    handler: dist/handlers/botHandler.handler\r\n    events:\r\n      - http:\r\n          path: webhook\r\n          method: post\r\n          cors: true\r\n\r\nresources:\r\n  Resources:\r\n    UsersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        AttributeDefinitions:\r\n          - AttributeName: UserId\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: UserId\r\n            KeyType: HASH\r\n        BillingMode: PAY_PER_REQUEST\r\n        TableName: ${self:custom.tableName}\r\n\r\nplugins:\r\n  - serverless-offline\r\n\r\npackage:\r\n  individually: true\r\n",
+    "command": [
+      "logs"
+    ],
+    "options": {
+      "function": "discordBot"
+    },
+    "error": {
+      "message": "No existing streams for the function",
+      "stack": "ServerlessError2: No existing streams for the function\n    at AwsLogs.getLogStreams (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:707:15004)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async logs:logs (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:707:14453)\n    at async PluginManager.runHooks (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:884:9309)\n    at async PluginManager.invoke (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10080)\n    at async PluginManager.run (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:884:10811)\n    at async Serverless.run (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:891:10464)\n    at async runFramework (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:939:2314)\n    at async route (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:950:16936)\n    at async Object.run2 [as run] (file:///C:/Users/Conrado-pc/.serverless/releases/4.2.4/package/dist/sf-core.js:950:17334)",
+      "code": "NO_EXISTING_LOG_STREAMS"
+    },
+    "params": {},
+    "machineId": "d81ad0ac74951367c79633faf7904bb0",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "9a4170ca-a9e9-4fed-a74b-37354941c27f",
+    "orgName": "conradomedeiros",
+    "userId": "dsJ8xw7HzLPyvNp6mr",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "conradomedeiros",
+    "subscription": null,
+    "userEmail": "conradodemedeiros@hotmail.com",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "590184128383",
+    "projectType": "framework",
+    "versionSf": "4.2.4",
+    "serviceProviderAwsCfStackName": "aws-serverless-discord-bot-service-dev",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:sa-east-1:590184128383:stack/aws-serverless-discord-bot-service-dev/036a1230-64eb-11ef-8b58-06b877652659",
+    "serviceProviderAwsCfStackCreated": "2024-08-28T03:10:00.973Z",
+    "serviceProviderAwsCfStackUpdated": "2024-08-28T03:10:40.154Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "DiscordBotLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:sa-east-1:590184128383:function:aws-serverless-discord-bot-service-dev-discordBot:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-aws-serverless-discord-bot-service-dev-DiscordBotLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "ServiceEndpoint",
+        "OutputValue": "https://7u6byv5b8h.execute-api.sa-east-1.amazonaws.com/dev",
+        "Description": "URL of the service endpoint",
+        "ExportName": "sls-aws-serverless-discord-bot-service-dev-ServiceEndpoint"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "aws-serverless-discord-bo-serverlessdeploymentbuck-n4hv7oe9j4ny",
+        "ExportName": "sls-aws-serverless-discord-bot-service-dev-ServerlessDeploymentBucketName"
+      }
+    ]
+  }
+}
